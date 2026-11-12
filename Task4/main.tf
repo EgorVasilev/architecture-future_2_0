@@ -55,14 +55,14 @@ resource "yandex_compute_disk" "portal_root_disk" {
   name     = "portal-root-disk"
   type     = "network-hdd"
   zone     = var.zone
-  size     = 6 # ГБ для ОС, кэша, DataHub и Apache Superset (значение уменьшено для лимитов учебного проекта)
+  size     = 6 # ГБ для ОС, кэша, DataHub и Apache Superset (значение уменьшено для лимитов учебного стенда)
 }
 
 resource "yandex_compute_disk" "processing_data_disk" {
   name     = "processing-data-disk"
   type     = "network-hdd" # Максимальная скорость IOPS для OLAP/Trino
   zone     = var.zone
-  size     = 6 # ГБ под горячий слой кэширования сотен ТБ данных аналитики (значение уменьшено для лимитов учебного проекта)
+  size     = 6 # ГБ под горячий слой кэширования сотен ТБ данных аналитики (значение уменьшено для лимитов учебного стенда)
 }
 
 # 3. Виртуальные машины
@@ -105,7 +105,7 @@ resource "yandex_compute_instance" "processing_vm" {
   boot_disk {
     initialize_params {
       image_id = data.yandex_compute_image.ubuntu.id
-      size     = 10 # значение уменьшено для лимитов учебного проекта
+      size     = 10 # значение уменьшено для лимитов учебного стенда
       type     = "network-hdd"
     }
   }
